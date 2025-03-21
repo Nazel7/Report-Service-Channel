@@ -54,12 +54,10 @@ public class ReportModel {
     private List<ReportData> reportData = new ArrayList<>();
 
     @CreationTimestamp
-//    @Setter(AccessLevel.NONE)
     @Column(length = 48)
     private Date createdAt;
 
     @UpdateTimestamp
-//    @Setter(AccessLevel.NONE)
     @Column(length = 48)
     private Date updatedAt;
 
