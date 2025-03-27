@@ -1,0 +1,42 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/report_db?prepareThreshold=0
+    username: postgres
+    password: passcode
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      minimumIdle: 2
+      maximumPoolSize: 10
+      idleTimeout: 30000
+      connectionTimeout: 600000
+      leakDetectionThreshold: 300000
+  jpa:
+    hibernate:
+      ddl-auto: update
+      transaction:
+        jta:
+          platform:generate-ddl: true
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        dialet: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    distribution:
+      slo:
+        http:
+          server:
+            requests: 100ms, 150ms, 250ms, 500ms, 1s
+  health:
+    readinessstate:
+      enabled: true
+    livenessstate:
+      enabled: true
